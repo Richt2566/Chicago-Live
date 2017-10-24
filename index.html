@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+
+    <title>Concert Finder</title>
+
+    <!-- Materialize -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+
+    <!-- css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Anton|Arimo|Arvo|Dosis|Fjalla+One|Slabo+27px" rel="stylesheet">
+
+   <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
+
+  </head>
+
+
+  <body>
+
+<h1>Chicago Concert Finder</h1>
+
+<form>
+  <div class="container">
+    <div class="row">
+            <div class="start-date col s6 m6 l6">
+            <input type="text" class="datepicker" placeholder="Start Date">
+            </div>
+            <div class="end-date col s6 m6 l6">
+            <input type="text" class="datepicker" placeholder="End Date">
+            </div>
+    </div>
+
+    <!-- genre picker -->
+  <div class="row">
+    <div class="genre-picker input-field col s12">
+      <select multiple>
+        <option value="" disabled selected>Choose a Genre</option>
+        <option value="1">R&amp;B</option>
+        <option value="2">Blues</option>
+        <option value="3">Club Dance</option>
+        <option value="4">Rock</option>
+        <option value="5">Pop</option>
+        <option value="6">Alternative Rock</option>
+        <option value="7">Rock &amp; Roll</option>
+        <option value="8">Country</option>
+        <option value="9">Heavy Metal</option>
+      </select>
+    </div>
+  </div>
+
+      <!-- submit and clear buttons -->
+    <div class="row">
+        <button class="btn" id="submit-btn" type="submit">Submit</button>
+        <button class="btn" id="clear-btn" type="clear">Clear</button>
+    </div>
+
+
+  </div> <!-- container div -->
+</form>
+
+        <!-- Google Map  -->
+
+    <div class="map-responsive">
+        <iframe
+        id="myFrame"
+        frameborder="0" 
+        style="border:0"
+        src="https://www.google.com/maps/embed/v1/search?q=united%20center&key=AIzaSyB7ydrZE1U4_y3TjyeaO2aVyfWzxUnxKuk" allowfullscreen></iframe>
+
+    </div> 
+
+        <!-- scripts -->
+    <script
+    src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
+    <script src="assets/javascript/javascript.js"></script>
+
+  </body>
+
+</html>

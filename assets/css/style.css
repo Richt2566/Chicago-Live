@@ -1,0 +1,60 @@
+body {
+	background-color: #2B2B2A;
+	margin: auto;
+}
+
+h1 {
+	font-family: 'Arvo', serif;
+	color: #E5B04E;
+	text-align: center;
+	font-size: 40px;
+
+}
+
+p {
+	font-family: 'Arvo', serif;
+	color: white;
+	font-size: 14px !important;
+}
+
+form {
+	font-family: 'Arvo', serif;
+	color: white;
+}
+
+.btn {
+	font-family: 'Arvo', serif;
+	background-color: #E5B04E;
+}
+
+.btn:hover {
+	font-family: 'Arvo', serif;
+	background-color: #EFC178;
+}
+
+.form-control{
+	border: none;
+}
+
+input::placeholder {
+	color: white;
+}
+
+button[type=clear] {
+	padding-left: 19px;
+	padding-right: 19px;
+}
+
+.map-responsive{
+    overflow:hidden;
+    padding-bottom:50%;
+    position:relative;
+    height:0;
+}
+.map-responsive iframe{
+    left:0;
+    top:0;
+    height:100%;
+    width:100%;
+    position:absolute;
+}
