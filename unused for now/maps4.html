@@ -34,34 +34,39 @@
   <body>
     <div id="floating-panel">
       <input id="address" type="textbox" value="">
-      <input id="address2" type="textbox" value="">
+      <!-- <input id="address2" type="textbox" value=""> -->
       <input id="submit" type="button" value="Search">
-      <input id="submit-theater" type="submit" name="chi" value="chicago theater">
+      <!-- <input id="submit-theater" type="submit" name="chi" value="chicago theater"> -->
     </div>
     <div id="map"></div>
     <script>
 
-      $("#submit-theater").on("click", function(){
-        //var place = whatever the api call gives as lat long
+      // $("#submit-theater").on("click", function(){
+      //   //var place = whatever the api call gives as lat long
 
-        var marker = new google.maps.Marker({
-              map: resultsMap,
-              position: place.geometry.location
-            });
-      });
+      //   var marker = new google.maps.Marker({
+      //         map: resultsMap,
+      //         position: place.geometry.location
+      //       });
+      // });
 
       //or we can find all venues in chicago that ticket master will find and get the lat long for them - might be the easier way.
-        var mylat = $("#address").val().trim();
-        var mylong = $("#address2").val().trim();
+        var mylat = 41.8781;
+        var mylong = -87.6298;
+        
+        // function what() {
+
+        // }
 
       function initMap() {
 
-        //var mylatt = -35.88;
-        //var mylong = 150.633;
+        //var myLatLng = new google.maps.LatLng({lat: -34, lng: 151});
+
 
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 8,
-          center: {lat:mylat , lng:mylong }
+          center: {lat:mylat, lng:mylong }
+          //{lat:mylat , lng:mylong }
         });
         var geocoder = new google.maps.Geocoder();
 
@@ -71,7 +76,9 @@
       }
 
       function geocodeAddress(geocoder, resultsMap) {
+        //this is important in changing the location
         var address = document.getElementById('address').value;
+
         geocoder.geocode({'address': address}, function(results, status) {
           if (status === 'OK') {
             resultsMap.setCenter(results[0].geometry.location);

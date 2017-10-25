@@ -8,7 +8,7 @@ var config = {
 // make sure they are connecting
 firebase.initializeApp(config);
 
-var database = firebase.databse();
+var database = firebase.database();
 
 //var locations = [location1, location2];
 
@@ -58,7 +58,7 @@ $.ajax({
       "name": events[i].name,
       "date": events[i].dates.start.localDate
      } ;
-    console.log(aShow);
+    //console.log(aShow);
     myObject.shows.push(aShow);
   }
 
@@ -67,11 +67,15 @@ $.ajax({
 //-----------------------------------------------------------
 
 //for loop based on the api results
-for (i = 0; i < apiresults.length; i++) {
+//for (i = 0; i < apiresults.length; i++) {
   //this will be ten api results
   //buttons with band name - date
 
-}
+  // if(no results) {
+  //   console.log("no results - please try again");
+  // }
+
+//}
 
 function loadIframe() {
 //this will populate the map, once they click one of ten buttons
@@ -81,7 +85,9 @@ function changeSrc() {
 //this will be the function that changes the src in the map
 
   // we grab what the user types 
-  var userLocation = $("#type-something").val().trim();
+  var userLocation = "united+center";
+
+  //$("#type-something").val().trim();
 
   //once submit gets clicked we change the path of the iframe to what the user has typed
   $("#myFrame").attr('src', "https://www.google.com/maps/embed/v1/search?q=" + userLocation + "&key=AIzaSyB7ydrZE1U4_y3TjyeaO2aVyfWzxUnxKuk");
@@ -94,7 +100,7 @@ $(document).ready(function() {
     $('select').material_select();
 
     //
-    $("#submit-button").on("click", function(){
+    $("#submit-btn").on("click", function(){
 
       //once submit gets clicked ten bands show up 
       //from the div area - maybe reworking into for loop
@@ -108,7 +114,7 @@ $(document).ready(function() {
       //   column.append("<tr>" + something + "</tr>");
       //$("#button-pit").append(column);
 
-      loadIframe()
+      //loadIframe()
       changeSrc();
     });
 });
