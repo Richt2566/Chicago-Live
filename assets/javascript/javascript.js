@@ -1,3 +1,15 @@
+var config = {
+    apiKey: "AIzaSyC_iCNRw1-_EefEtmgoyiHN5XdB3UGisvA",
+    authDomain: "brew-database-97a1f.firebaseapp.com",
+    databaseURL: "https://brew-database-97a1f.firebaseio.com",
+    storageBucket: "brew-database-97a1f.appspot.com",
+  };
+
+// make sure they are connecting
+firebase.initializeApp(config);
+
+var database = firebase.databse();
+
 //var locations = [location1, location2];
 
 //api call will .push into the array...
@@ -72,7 +84,7 @@ function changeSrc() {
   var userLocation = $("#type-something").val().trim();
 
   //once submit gets clicked we change the path of the iframe to what the user has typed
-  $("#myFrame").attr('src', "https:www.google.com/maps/embed/v1/place?key=AIzaSyB7ydrZE1U4_y3TjyeaO2aVyfWzxUnxKuk&q=" + userLocation);
+  $("#myFrame").attr('src', "https://www.google.com/maps/embed/v1/search?q=" + userLocation + "&key=AIzaSyB7ydrZE1U4_y3TjyeaO2aVyfWzxUnxKuk");
 }
 
 //-----------------------------------------------------------
