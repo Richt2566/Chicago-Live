@@ -82,7 +82,7 @@ $("#submit-btn").on("click", function(event){
         console.log(myShows.shows[showIndex]);
       });
 
-      $('body').append(myButton);
+      $('.concert-btn').append(myButton);
     }
 
   });
