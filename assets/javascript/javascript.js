@@ -73,7 +73,7 @@ $("#submit-btn").on("click", function(event){
        } ;
       console.log(aShow);
       myShows.shows.push(aShow);
-      var myButton = $("<button>");
+      var myButton = $("<button class='api-btn'>" + events[i].name + "</button>");
       myButton.attr("data-show", i);
       myButton.click(function() {
         // Do something with the value
