@@ -75,14 +75,14 @@ $("#submit-btn").on("click", function(event){
       myShows.shows.push(aShow);
       var myButton = $("<button>");
       myButton.attr("data-show", i);
-      myButton.click(function(this) {
+      myButton.click(function() {
         // Do something with the value
 
         var showIndex = $(this).attr('data-show'); // grabs the index of show
         console.log(myShows.shows[showIndex]);
       });
 
-      $('body').append(myButton);
+      $('.concert-btn').append(myButton);
     }
 
   });
