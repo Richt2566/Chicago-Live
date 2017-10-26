@@ -36,8 +36,10 @@
 
     <!-- genre picker -->
   <div class="row">
-    <div class="genre-picker input-field col s12">
-      <select  id="genre">
+
+
+    <div class="genre-picker input-field col s9">
+      <select multiple id="genre">		
         <option value="" disabled selected>Choose a Genre</option>
         <option value="R&B">R&amp;B</option>
         <option value="Blues">Blues</option>
@@ -50,6 +52,16 @@
         <option value="Heavy Metal">Heavy Metal</option>
       </select>
     </div>
+    <div class="quantity-picker input-field col s3" id="return-quantity">
+      <select>
+        <option value="" disabled selected># of Options</option>
+        <option value="6">6</option>
+        <option value="12">12</option>
+        <option value="18">18</option>
+        <option value="24">24</option>
+      </select>
+    </div>
+
   </div>
 
       <!-- submit and clear buttons -->
@@ -85,7 +97,7 @@
           id="myFrame"
           frameborder="0" 
           style="border:0"
-          src="https://www.google.com/maps/embed/v1/search?q=Thalia+Hall&key=AIzaSyB7ydrZE1U4_y3TjyeaO2aVyfWzxUnxKuk"
+          src="https://www.google.com/maps/embed/v1/search?q=Chicago+Illinois&key=AIzaSyB7ydrZE1U4_y3TjyeaO2aVyfWzxUnxKuk"
           allowfullscreen>
           </iframe>
         </div>
