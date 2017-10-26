@@ -31,12 +31,11 @@ $("#submit-btn").on("click", function(event){
   var startDates = $("#startDate").val();
   var endDates = $("#endDate").val();
   var time = "T00:00:00Z";
-  console.log(startDates);
   var title = "Ticket Master";
   var genre = $("#genre").val();
   var startDate = startDates.concat(time);
   var endDate = endDates.concat(time);
-  var size="50";
+  var size= parseInt($("#size").val());
   var apiKey="qq8XdJrLt8geS8g2CUjbY9sqKk8crlQw";
   var queryURL = "https:app.ticketmaster.com/discovery/v2/events.json?countryCode=US&city=Chicago&classificationName=music&classificationName="+genre+"&startDateTime="+startDate+"&endDateTime="+endDate+"&size="+size+"&apikey="+apiKey;
 
@@ -67,6 +66,8 @@ $("#submit-btn").on("click", function(event){
         "name": events[i].name,
         "date": events[i].dates.start.localDate,
         "venue": events[i]._embedded.venues[0].name,
+        "photoURL": events[i].images[0].url,
+        "ticketURL": events[i].url
         //"latitude": events[i]._embedded.venues[0].location.latitude,
         //"longitude": events[i]._embedded.venues[0].location.longitude
        } ;
