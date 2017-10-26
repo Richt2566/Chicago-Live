@@ -32,17 +32,16 @@ form {
 	background-color: #EFC178;
 }
 
-.form-control{
-	border: none;
+.btn:focus{ 
+  background-color: #EFC178;
 }
 
 input::placeholder {
 	color: white;
 }
 
-button[type=clear] {
-	padding-left: 19px;
-	padding-right: 19px;
+.multiple{
+	color: #E5B04E;
 }
 
 .map-responsive{
@@ -57,4 +56,8 @@ button[type=clear] {
     height:100%;
     width:100%;
     position:absolute;
+}
+
+.concert-btn {
+	
 }
