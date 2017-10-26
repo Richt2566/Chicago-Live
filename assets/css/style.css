@@ -61,3 +61,13 @@ input::placeholder {
 .concert-btn {
 	
 }
+
+.api-btn {
+	font-family: 'Arvo', serif;
+	margin: 10px;
+	padding: 40px;
+	padding-right: 20px;
+	background-color: #E5B04E;
+	width: 200px;
+	height: auto;
+}
