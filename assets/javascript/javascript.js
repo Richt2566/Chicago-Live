@@ -35,7 +35,7 @@ $("#submit-btn").on("click", function(event){
   var time = "T00:00:00Z";
   console.log(startDates);
   var title = "Ticket Master";
-  var genre = "Rock";
+  var genre = $("#genre").val();
   var startDate = startDates.concat(time);
   var endDate = endDates.concat(time);
   var size="50";
