@@ -30,7 +30,7 @@ $("#submit-btn").on("click", function(event){
   event.preventDefault();
 
 // constructing a queryURL variable we will use instead of the literal string inside of the ajax method
-<<<<<<< HEAD
+
 var title = "Ticket Master";
 var genre = "Rock";
 var startDate = "2017-10-23T00:00:00Z";
@@ -67,7 +67,7 @@ $.ajax({
   }
 
 });
-=======
+// =======
   var startDates = $("#startDate").val();
   var endDates = $("#endDate").val();
   var time = "T00:00:00Z";
@@ -113,7 +113,7 @@ $.ajax({
   });
 
 });  
->>>>>>> 7a2d39c4813f66899b9e58a0710547133eeee037
+// >>>>>>> 7a2d39c4813f66899b9e58a0710547133eeee037
 
 //-----------------------------------------------------------
 
@@ -151,11 +151,11 @@ $(document).ready(function() {
    $('select').material_select();
 
     //
-<<<<<<< HEAD
+// <<<<<<< HEAD
     $("#submit-btn").on("click", function(){
-=======
-   $("#submit-button").on("click", function(){
->>>>>>> 7a2d39c4813f66899b9e58a0710547133eeee037
+// =======
+//    $("#submit-button").on("click", function(){
+// >>>>>>> 7a2d39c4813f66899b9e58a0710547133eeee037
 
       //once submit gets clicked ten bands show up 
       //from the div area - maybe reworking into for loop
@@ -169,13 +169,9 @@ $(document).ready(function() {
       //   column.append("<tr>" + something + "</tr>");
       //$("#button-pit").append(column);
 
-<<<<<<< HEAD
-      //loadIframe()
-      changeSrc();
-=======
+
      loadIframe()
      changeSrc();
->>>>>>> 7a2d39c4813f66899b9e58a0710547133eeee037
     });
 });
 
