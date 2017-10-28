@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Anton|Arimo|Arvo|Dosis|Fjalla+One|Slabo+27px" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Anton|Arimo|Arvo|Dosis|Roboto+Condensed" rel="stylesheet">
 
    <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
@@ -27,29 +27,41 @@
   <div class="container">
     <div class="row">
             <div class="start-date col s6 m6 l6">
-            <input type="text" class="datepicker" placeholder="Start Date">
+            <input type="text" class="datepicker" id="startDate" placeholder="Start Date">
             </div>
             <div class="end-date col s6 m6 l6">
-            <input type="text" class="datepicker" placeholder="End Date">
+            <input type="text" class="datepicker" id="endDate" placeholder="End Date">
             </div>
     </div>
 
     <!-- genre picker -->
   <div class="row">
-    <div class="genre-picker input-field col s12">
-      <select multiple>
+
+
+    <div class="genre-picker input-field col s9">
+      <select id="genre">		
         <option value="" disabled selected>Choose a Genre</option>
-        <option value="1">R&amp;B</option>
-        <option value="2">Blues</option>
-        <option value="3">Club Dance</option>
-        <option value="4">Rock</option>
-        <option value="5">Pop</option>
-        <option value="6">Alternative Rock</option>
-        <option value="7">Rock &amp; Roll</option>
-        <option value="8">Country</option>
-        <option value="9">Heavy Metal</option>
+        <option value="R&B">R&amp;B</option>
+        <option value="Blues">Blues</option>
+        <option value="Club Dance">Club Dance</option>
+        <option value="Rock">Rock</option>
+        <option value="Pop">Pop</option>
+        <option value="Alternative Rock">Alternative Rock</option>
+        <option value="Rock">Rock &amp; Roll</option>
+        <option value="Country">Country</option>
+        <option value="Heavy Metal">Heavy Metal</option>
       </select>
     </div>
+    <div class="quantity-picker input-field col s3" id="return-quantity">
+      <select id="size">
+        <option value="" disabled selected># of Options</option>
+        <option value="6">6</option>
+        <option value="12">12</option>
+        <option value="18">18</option>
+        <option value="24">24</option>
+      </select>
+    </div>
+
   </div>
 
       <!-- submit and clear buttons -->
@@ -62,15 +74,36 @@
   </div> <!-- container div -->
 </form>
 
+
+    <!-- container for adding buttons -->
+
+    <div class="container">
+        <div class="row">
+
+          <div class= "concert-btn">
+            
+          </div>
+          
+            
+        </div>
+    </div>
+
+
+
         <!-- Google Map  -->
 
     <div class="map-responsive">
-        <iframe
-        id="myFrame"
-        frameborder="0" 
-        style="border:0"
-        src="https://www.google.com/maps/embed/v1/search?q=united%20center&key=AIzaSyB7ydrZE1U4_y3TjyeaO2aVyfWzxUnxKuk" allowfullscreen></iframe>
-
+      <div class="parallax-container">
+        <div class="parallax">
+          <iframe
+          id="myFrame"
+          frameborder="0" 
+          style="border:0"
+          src="https://www.google.com/maps/embed/v1/search?q=Chicago+Illinois&key=AIzaSyB7ydrZE1U4_y3TjyeaO2aVyfWzxUnxKuk"
+          allowfullscreen>
+          </iframe>
+        </div>
+      </div>
     </div> 
 
         <!-- scripts -->
