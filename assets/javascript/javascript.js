@@ -85,7 +85,14 @@ $("#submit-btn").on("click", function(event){
 
         var showIndex = $(this).attr('data-show'); // grabs the index of show
 
+        var thisShow = myShows.shows[showIndex]
+        console.log(thisShow);
+        
+        //database add code
+        database.ref().push(thisShow);
         changeSrc(myShows.shows[showIndex].venue);
+
+
 
       });
 
