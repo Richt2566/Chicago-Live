@@ -95,3 +95,11 @@ option[value] {
 .card {
 	margin-top: 28px;
 }
+
+.btn-floating{
+	background-color: #E5B04E;
+}
+
+.btn-floating:hover {
+	background-color: #EFC178;
+}
