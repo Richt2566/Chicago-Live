@@ -15,7 +15,6 @@ $('.card').hide();
 
 //api call will .push into the array...
 // var locationsEmpty = [];
- 
 
 $('.datepicker').pickadate({
     selectMonths: true, // Creates a dropdown to control month
@@ -83,9 +82,16 @@ $("#submit-btn").on("click", function(event){
 
         var showIndex = $(this).attr('data-show'); // grabs the index of show
 
+        var thisShow = myShows.shows[showIndex]
+        console.log(thisShow);
+
+        database.ref().push(thisShow);
+
         changeSrc(myShows.shows[showIndex].venue);
 
-        
+        makeCard(myShows.shows[showIndex].name, myShows.shows[showIndex].photoURL, myShows.shows[showIndex].venue);
+
+        $(".card").show(); 
 
       });
 
@@ -116,6 +122,17 @@ function loadIframe() {
 
 //do you guys think the map should always be there? or populate 
 //when you click a button??
+}
+
+function makeCard(myCard, myCard2, myCard3, myCard4) {
+  var myText = myCard;
+
+  $("#card-p").text(myText);
+  $("#card-img").attr('src', myCard2);
+  $("#card-v").text(myCard3);
+  $("#card-t").text(myCard4);
+
+
 }
 
 function changeSrc(myobj) {
