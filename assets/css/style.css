@@ -82,3 +82,11 @@ option[value] {
 	font-family: 'Roboto Condensed', sans-serif;
 	background-color: #565656;
 }
+
+.api-btn:focus {
+	background-color: #565656;
+}
+
+.halfway-fab {
+	color: #E5B04E;
+}
