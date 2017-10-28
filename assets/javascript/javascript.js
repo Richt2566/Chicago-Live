@@ -20,7 +20,7 @@ $('.datepicker').pickadate({
     today: 'Today',
     clear: 'Clear',
     close: 'Ok',
-    closeOnSelect: false // Close upon selecting a date,
+    closeOnSelect: true // Close upon selecting a date,
 });
 
 //-----------------------------------------------------------
@@ -35,7 +35,7 @@ $("#submit-btn").on("click", function(event){
   var genre = $("#genre").val();
   var startDate = startDates.concat(time);
   var endDate = endDates.concat(time);
-  var size= parseInt($("#size").val());
+  var size = 20;
   var apiKey="qq8XdJrLt8geS8g2CUjbY9sqKk8crlQw";
   var queryURL = "https:app.ticketmaster.com/discovery/v2/events.json?countryCode=US&city=Chicago&classificationName=music&classificationName="+genre+"&startDateTime="+startDate+"&endDateTime="+endDate+"&size="+size+"&apikey="+apiKey;
 
