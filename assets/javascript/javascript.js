@@ -86,12 +86,15 @@ $("#submit-btn").on("click", function(event){
 
       $('.concert-btn').append(myButton);
 
-      // if ( no api calls ) {
-      //   var noShow = ("<h1> Sorry no results found. </h1>");
-      // }
-      // if they did not finish the user field {
-        // var message = ("<h1> oops you missed something.</h1>")
-      //}
+      if (queryURL === null) {
+        var noShow = ("<h1> Sorry no results found. </h1>");
+        $(".error-msg").append(noShow);
+      }
+
+      if (status === 400) {
+        var message = ("<h1> oops you missed something.</h1>")
+      }
+
       // if current api call is "today" {
         //display today in concert buttons
       //}
