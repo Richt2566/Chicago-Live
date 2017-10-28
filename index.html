@@ -4,8 +4,10 @@
 
     <title>Concert Finder</title>
 
-    <!-- Materialize -->
+    <!-- Materialize stylesheets -->
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+
+     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- css -->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
@@ -38,7 +40,7 @@
   <div class="row">
 
 
-    <div class="genre-picker input-field col s9">
+    <div class="genre-picker input-field col s12">
       <select id="genre">		
         <option value="" disabled selected>Choose a Genre</option>
         <option value="R&B">R&amp;B</option>
@@ -50,15 +52,6 @@
         <option value="Rock">Rock &amp; Roll</option>
         <option value="Country">Country</option>
         <option value="Heavy Metal">Heavy Metal</option>
-      </select>
-    </div>
-    <div class="quantity-picker input-field col s3" id="return-quantity">
-      <select id="size">
-        <option value="" disabled selected># of Options</option>
-        <option value="6">6</option>
-        <option value="12">12</option>
-        <option value="18">18</option>
-        <option value="24">24</option>
       </select>
     </div>
 
@@ -88,23 +81,31 @@
         </div>
     </div>
 
-
-
         <!-- Google Map  -->
-
     <div class="map-responsive">
-      <div class="parallax-container">
-        <div class="parallax">
           <iframe
           id="myFrame"
           frameborder="0" 
           style="border:0"
-          src="https://www.google.com/maps/embed/v1/search?q=Chicago+Illinois&key=AIzaSyB7ydrZE1U4_y3TjyeaO2aVyfWzxUnxKuk"
+          src="https://www.google.com/maps/embed/v1/place?q=Chicago+Illinois&key=AIzaSyB7ydrZE1U4_y3TjyeaO2aVyfWzxUnxKuk"
           allowfullscreen>
           </iframe>
+    </div>
+
+  <div class="row">
+    <div class="col s6 m4 l4">
+      <div class="card">
+        <div class="card-image">
+          <img src="">
+          <span class="card-title"></span>
+          <a class="btn-floating halfway-fab waves-effect waves-light">
+          <i class="material-icons">star</i></a>
+        </div>
+        <div class="card-content"><p></p>
         </div>
       </div>
-    </div> 
+    </div>
+  </div>
 
         <!-- scripts -->
     <script
