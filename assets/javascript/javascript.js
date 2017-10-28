@@ -10,6 +10,9 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 
+// hiding card until needed
+$('.card').hide();
+
 //api call will .push into the array...
 var locationsEmpty = [];
  
@@ -119,8 +122,9 @@ function changeSrc(myobj) {
 //-----------------------------------------------------------
 
 $(document).ready(function() {
-    // Emily what is this?
-   $('select').material_select();
+
+  // materialize jquery for selection boxes
+  $('select').material_select();
 
    //once submit is pressed
     // $("#submit-btn").on("click", function(){
