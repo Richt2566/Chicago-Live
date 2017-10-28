@@ -8,6 +8,8 @@ var config = {
 // make sure they are connecting
 firebase.initializeApp(config);
 
+// Add comment
+
 var database = firebase.database();
 
 //api call will .push into the array...
