@@ -8,6 +8,8 @@ var config = {
 // make sure they are connecting
 firebase.initializeApp(config);
 
+// Add comment
+
 var database = firebase.database();
 
 // hiding card until needed
@@ -91,7 +93,7 @@ $("#submit-btn").on("click", function(event){
 
         makeCard(myShows.shows[showIndex].name, myShows.shows[showIndex].photoURL, myShows.shows[showIndex].venue);
 
-        $(".card").show(); 
+        $(".card").show();
 
       });
 
