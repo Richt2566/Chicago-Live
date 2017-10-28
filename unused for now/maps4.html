@@ -32,31 +32,53 @@
     </style>
   </head>
   <body>
-    <div id="floating-panel">
-      <input id="address" type="textbox" value="">
-      <!-- <input id="address2" type="textbox" value=""> -->
-      <input id="submit" type="button" value="Search">
-      <!-- <input id="submit-theater" type="submit" name="chi" value="chicago theater"> -->
-    </div>
+    <button id="submit">hey</button>
+    
     <div id="map"></div>
     <script>
 
-      // $("#submit-theater").on("click", function(){
-      //   //var place = whatever the api call gives as lat long
+$("#submit").on("click", function(event){
+  event.preventDefault();
 
-      //   var marker = new google.maps.Marker({
-      //         map: resultsMap,
-      //         position: place.geometry.location
-      //       });
-      // });
+// constructing a queryURL variable we will use instead of the literal string inside of the ajax method
+  var startDates = $("#startDate").val();
+  var endDates = $("#endDate").val();
+  var time = "T00:00:00Z";
+  var title = "Ticket Master";
+  var genre = $("#genre").val();
+  var startDate = startDates.concat(time);
+  var endDate = endDates.concat(time);
+  var size= parseInt($("#size").val());
+  var apiKey="qq8XdJrLt8geS8g2CUjbY9sqKk8crlQw";
+  var queryURL = "https:app.ticketmaster.com/discovery/v2/events.json?countryCode=US&city=Chicago&classificationName=music&classificationName="+genre+"&startDateTime="+startDate+"&endDateTime="+endDate+"&size="+size+"&apikey="+apiKey;
+
+  var myShows = {
+    "shows": []
+  };
+
+  //the ajax call
+  $.ajax({
+      url: queryURL,
+      method: "GET"
+    }).done(function(response) {
+        var events = response._embedded.events;
+      myShows = {
+        "shows": []
+    };
+
+      for(var i=0;i<events.length;i++){
+        var aShow ={
+          "name": events[i].name,
+          "date": events[i].dates.start.localDate,
+          "venue": events[i]._embedded.venues[0].name,
+         } ;
+        myShows.shows.push(aShow);
+
+      };
 
       //or we can find all venues in chicago that ticket master will find and get the lat long for them - might be the easier way.
         var mylat = 41.8781;
         var mylong = -87.6298;
-        
-        // function what() {
-
-        // }
 
       function initMap() {
 
@@ -75,7 +97,7 @@
       function geocodeAddress(geocoder, resultsMap) {
         
         //this is important in changing the location
-        var address = document.getElementById('address').value;
+        var address = "austin";
 
         geocoder.geocode({'address': address}, function(results, status) {
           if (status === 'OK') {
@@ -86,9 +108,6 @@
             });
           } else {
             alert('Geocode was not successful for the following reason: ' + status);
-          }
-        });
-      }
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script async defer
