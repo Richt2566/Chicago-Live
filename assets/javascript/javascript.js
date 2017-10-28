@@ -84,16 +84,23 @@ $("#submit-btn").on("click", function(event){
 
         var showIndex = $(this).attr('data-show'); // grabs the index of show
 
-        var thisShow = myShows.shows[showIndex]
-        console.log(thisShow);
+            // var thisShow = myShows.shows[showIndex]
+            // console.log(thisShow);
 
-        database.ref().push(thisShow);
+            // database.ref().push(thisShow);
 
         changeSrc(myShows.shows[showIndex].venue);
 
         makeCard(myShows.shows[showIndex].name, myShows.shows[showIndex].photoURL, myShows.shows[showIndex].venue);
 
         $(".card").show();
+
+        $(".btn-floating").on("click", function(){
+          var thisShow = myShows.shows[showIndex]
+          console.log(thisShow);
+          database.ref().push(thisShow);
+          $(".btn-floating").html('<i class="material-icons">star</i></a>');
+        })
 
       });
 
@@ -117,6 +124,15 @@ $("#submit-btn").on("click", function(event){
 
 });  
 
+
+// _______________________
+  database.ref().on("child_added", function(snapshot){
+    // var date = snapshot.val().date;
+    console.log(snapshot.val().date);
+    $("#fave-area").append(snapshot.val().name);
+    $("#fave-area").append(snapshot.val().venue);
+    $("#fave-area").append(snapshot.val().date);
+  });
 //-----------------------------------------------------------
 
 function loadIframe() {
