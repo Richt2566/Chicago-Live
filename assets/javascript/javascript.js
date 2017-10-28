@@ -10,7 +10,8 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 
-//var locations = [location1, location2];
+// hiding card until needed
+$('.card').hide();
 
 //api call will .push into the array...
 var locationsEmpty = [];
@@ -22,7 +23,7 @@ $('.datepicker').pickadate({
     today: 'Today',
     clear: 'Clear',
     close: 'Ok',
-    closeOnSelect: false // Close upon selecting a date,
+    closeOnSelect: true // Close upon selecting a date,
 });
 
 //-----------------------------------------------------------
@@ -33,12 +34,11 @@ $("#submit-btn").on("click", function(event){
   var startDates = $("#startDate").val();
   var endDates = $("#endDate").val();
   var time = "T00:00:00Z";
-  console.log(startDates);
   var title = "Ticket Master";
   var genre = $("#genre").val();
   var startDate = startDates.concat(time);
   var endDate = endDates.concat(time);
-  var size="50";
+  var size = 20;
   var apiKey="qq8XdJrLt8geS8g2CUjbY9sqKk8crlQw";
   var queryURL = "https:app.ticketmaster.com/discovery/v2/events.json?countryCode=US&city=Chicago&classificationName=music&classificationName="+genre+"&startDateTime="+startDate+"&endDateTime="+endDate+"&size="+size+"&apikey="+apiKey;
 
@@ -56,34 +56,47 @@ $("#submit-btn").on("click", function(event){
       url: queryURL,
       method: "GET"
     }).done(function(response) {
-      console.log(response);
+      //console.log(response);
       // console.log(response.Runtime);
-          var events = response._embedded.events;
-    console.log(events);
-    myShows = {
-      "shows": []
+        var events = response._embedded.events;
+    //console.log(events);
+      myShows = {
+        "shows": []
     };
+
     for(var i=0;i<events.length;i++){
       var aShow ={
         "name": events[i].name,
         "date": events[i].dates.start.localDate,
         "venue": events[i]._embedded.venues[0].name,
+        "photoURL": events[i].images[0].url,
+        "ticketURL": events[i].url
         //"latitude": events[i]._embedded.venues[0].location.latitude,
         //"longitude": events[i]._embedded.venues[0].location.longitude
        } ;
-      console.log(aShow);
+      //console.log(aShow);
       myShows.shows.push(aShow);
-      var myButton = $("<button>");
+      var myButton = $("<button class='api-btn'>" + events[i].name + "</button>");
+      // var myMarker = new google.maps.Marker({
+      //         position: events[i]._embedded.venues[0].name.geometry.location
+      //       });
       myButton.attr("data-show", i);
       myButton.click(function() {
+
         // Do something with the value
 
         var showIndex = $(this).attr('data-show'); // grabs the index of show
-        console.log(myShows.shows[showIndex]);
-        
+        console.log(myShows.shows[showIndex].venue);
+
+      changeSrc(myShows.shows[showIndex].venue);
+
       });
 
       $('.concert-btn').append(myButton);
+
+      // if ( no api calls ) {
+      //   var noShow = ("<h1> Sorry no results found. </h1>");
+      // }
     }
 
   });
@@ -92,28 +105,15 @@ $("#submit-btn").on("click", function(event){
 
 //-----------------------------------------------------------
 
-//for loop based on the api results
-//for (i = 0; i < apiresults.length; i++) {
-  //this will be ten api results
-  //buttons with band name - date
-
-  // if(no results) {
-  //   console.log("no results - please try again");
-  // }
-
-//}
-
 function loadIframe() {
 //this will populate the map, once they click one of ten buttons
 }
 
-function changeSrc() {
+function changeSrc(myobj) {
 //this will be the function that changes the src in the map
 
   // we grab what the user types 
-  var userLocation = "united+center";
-
-  //$("#type-something").val().trim();
+  var userLocation = myobj;
 
   //once submit gets clicked we change the path of the iframe to what the user has typed
   $("#myFrame").attr('src', "https://www.google.com/maps/embed/v1/search?q=" + userLocation + "&key=AIzaSyB7ydrZE1U4_y3TjyeaO2aVyfWzxUnxKuk");
@@ -122,29 +122,22 @@ function changeSrc() {
 //-----------------------------------------------------------
 
 $(document).ready(function() {
-    // Emily what is this?
-   $('select').material_select();
 
-    $("#submit-btn").on("click", function(){
+  // materialize jquery for selection boxes
+  $('select').material_select();
 
-      //once submit gets clicked ten bands show up 
-      //from the div area - maybe reworking into for loop
-      // var column = $("<tbody></tbody>");
+   //once submit is pressed
+    // $("#submit-btn").on("click", function(){
 
-      //   column.append("<tr>" + something + "</tr>");
-      //   column.append("<tr>" + something + "</tr>");
-      //   column.append("<tr>" + something + "</tr>");
-      //   column.append("<tr>" + something + "</tr>");
-      //   column.append("<tr>" + something + "</tr>");
-      //   column.append("<tr>" + something + "</tr>");
-      //$("#button-pit").append(column);
+    //  loadIframe()
 
-     loadIframe()
-     changeSrc();
-    });
+    // });
+
+    // $(".api-btn").on("click", function(){
+    //   console.log("button clicked!!!");
+
+    // });
 });
-
-//$(document).on("click", "#submit-btn", onSubmit);
 
 $("#result").on("click", function() {
 
