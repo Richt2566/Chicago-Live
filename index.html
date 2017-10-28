@@ -73,15 +73,17 @@
     <div class="container">
         <div class="row">
 
+          <div class="error-msg"></div>
+
           <div class= "concert-btn">
             
           </div>
           
-            
         </div>
     </div>
 
         <!-- Google Map  -->
+
     <div class="map-responsive" style="width: 100%; overflow: hidden; height: 500px;">
       <iframe
           id="myFrame"
@@ -90,16 +92,19 @@
           src="https://www.google.com/maps/embed/v1/place?q=Chicago+Illinois&key=AIzaSyB7ydrZE1U4_y3TjyeaO2aVyfWzxUnxKuk"
           allowfullscreen>
           </iframe>
-      <div class="row center-align"">
+         <div class="row center-align"">
         <div class="col s6 m4 l4">
           <div class="card">
             <div class="card-image">
-          <img src="">
+          <img id="card-img" src="">
           <span class="card-title"></span>
           <a class="btn-floating halfway-fab waves-effect waves-light">
           <i class="material-icons">star</i></a>
         </div>
-        <div class="card-content"><p></p>
+        <div class="card-content">
+          <p id="card-p"> </p><br>
+          <p id="card-v"> </p>
+          <p id="card-t"> </p>
         </div>
           </div>
         </div>

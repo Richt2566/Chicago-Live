@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Google Marker</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 400px;
+        width: 100%;
+      }
+
+    </style>
+  </head>
+  <body>
+    <h1>Google Map Markers</h1>
+    <div id="map"></div>
+    <script>
+      
+      function initMap(){
+        // Map option, centered at Chicago
+        var options = {
+          center: {lat: 41.8781, lng: -87.6298}, 
+          zoom: 13
+        }
+        // New map
+        var map = new google.maps.Map(document.getElementById('map'), options);
+
+
+
+        // add marker on the map centered
+        // var marker = new google.maps.Marker({
+        //   position : {lat: 41.8781, lng: -87.6298},//need to find a way to pass value from ticketmaster.
+        //   map:map
+
+
+        //need to find a way to pass value from ticketmaster.
+        addMarker ({lat: 41.8781, lng: -87.6298}); //Chicago
+        addMarker ({lat: 41.8807, lng: -87.6742}); //United Center
+        addMarker ({lat: 41.8623, lng: -87.6167}); //Soldiers Field
+
+
+        // add marker function
+          function addMarker(coords){
+            var marker = new google.maps.Marker({
+            position :coords,
+            map:map
+    
+
+        });
+        }
+      }
+      
+      
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB7ydrZE1U4_y3TjyeaO2aVyfWzxUnxKuk&callback=initMap"
+    async defer></script>
+  </body>
+</html>

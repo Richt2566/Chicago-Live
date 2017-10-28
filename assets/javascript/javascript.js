@@ -8,6 +8,8 @@ var config = {
 // make sure they are connecting
 firebase.initializeApp(config);
 
+// Add comment
+
 var database = firebase.database();
 
 // hiding card until needed
@@ -15,7 +17,6 @@ var database = firebase.database();
 
 //api call will .push into the array...
 // var locationsEmpty = [];
- 
 
 $('.datepicker').pickadate({
     selectMonths: true, // Creates a dropdown to control month
@@ -83,18 +84,30 @@ $("#submit-btn").on("click", function(event){
 
         var showIndex = $(this).attr('data-show'); // grabs the index of show
 
+        var thisShow = myShows.shows[showIndex]
+        console.log(thisShow);
+
+        database.ref().push(thisShow);
+
         changeSrc(myShows.shows[showIndex].venue);
+
+        makeCard(myShows.shows[showIndex].name, myShows.shows[showIndex].photoURL, myShows.shows[showIndex].venue);
+
+        $(".card").show();
 
       });
 
       $('.concert-btn').append(myButton);
 
-      // if ( no api calls ) {
-      //   var noShow = ("<h1> Sorry no results found. </h1>");
-      // }
-      // if they did not finish the user field {
-        // var message = ("<h1> oops you missed something.</h1>")
-      //}
+      if (queryURL === null) {
+        var noShow = ("<h1> Sorry no results found. </h1>");
+        $(".error-msg").append(noShow);
+      }
+
+      if (status === 400) {
+        var message = ("<h1> oops you missed something.</h1>")
+      }
+
       // if current api call is "today" {
         //display today in concert buttons
       //}
@@ -111,6 +124,17 @@ function loadIframe() {
 
 //do you guys think the map should always be there? or populate 
 //when you click a button??
+}
+
+function makeCard(myCard, myCard2, myCard3, myCard4) {
+  var myText = myCard;
+
+  $("#card-p").text(myText);
+  $("#card-img").attr('src', myCard2);
+  $("#card-v").text(myCard3);
+  $("#card-t").text(myCard4);
+
+
 }
 
 function changeSrc(myobj) {
