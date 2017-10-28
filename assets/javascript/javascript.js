@@ -82,6 +82,8 @@ $("#submit-btn").on("click", function(event){
 
         changeSrc(myShows.shows[showIndex].venue);
 
+        
+
       });
 
       $('.concert-btn').append(myButton);
