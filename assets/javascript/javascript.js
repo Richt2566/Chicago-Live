@@ -13,7 +13,7 @@ firebase.initializeApp(config);
 var database = firebase.database();
 
 // hiding card until needed
-$('.card').hide();
+// $('.card').hide();
 
 //api call will .push into the array...
 // var locationsEmpty = [];
