@@ -1,6 +1,6 @@
 # Chicago Music Event Locator
 
-This repository contains the user friendly webpage which searches for music events in Chicago. User can define specific music genre and date range. Afterwards,result displays the artist names, event dates, and specific venue locations.
+This repository contains the user friendly webpage that searches for music events in Chicago. User can define specific music genre and date range. Result are displayed with the artist names, event dates, and specific venue locations.
 Github link https://github.com/Richt2566/Project1
 
 ## Usage
