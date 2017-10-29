@@ -25,7 +25,7 @@ This repository contains the user friendly webpage that searches for music event
 * Json
 * [Materialize ver 0.100.2](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=0ahUKEwitoJaZrJXXAhVL0oMKHbK8D9AQFggoMAA&url=http%3A%2F%2Fmaterializecss.com%2F&usg=AOvVaw2h8GXVfMiSxDBGwBmCrVHZ)
 * [Firebase ver 4.6.0](https://firebase.google.com/)
-* [Javascript ver 3.2.1](https://www.javascript.com/)
+* [JQuery ver 3.2.1](https://www.javascript.com/)
 
 ## Contributors
 
