@@ -30,9 +30,11 @@ $('.datepicker').pickadate({
 
 //-----------------------------------------------------------
 $("#submit-btn").on("click", function(event){
+
+  // this prevents the page from reloading
   event.preventDefault();
 
-// constructing a queryURL variable we will use instead of the literal string inside of the ajax method
+  // constructing a queryURL variable we will use instead of the literal string inside of the ajax method
   var startDates = $("#startDate").val();
   var endDates = $("#endDate").val();
   var time = "T00:00:00Z";
@@ -75,86 +77,91 @@ $("#submit-btn").on("click", function(event){
        } ;
 
       myShows.shows.push(aShow);
+      
       var myButton = $("<button class='api-btn'>" + events[i].name + "<br>"
        + events[i].dates.start.localDate + "</button>");
       
+      //
       myButton.attr("data-show", i);
-
-      myButton.click(function() {
-
-        var showIndex = $(this).attr('data-show'); // grabs the index of show
-
-            // var thisShow = myShows.shows[showIndex]
-            // console.log(thisShow);
-
-            // database.ref().push(thisShow);
-
-        changeSrc(myShows.shows[showIndex].venue);
-
-        makeCard(myShows.shows[showIndex].name, myShows.shows[showIndex].photoURL, myShows.shows[showIndex].venue);
-
-        $(".card").show();
-
-        $(".btn-floating").on("click", function(){
-          var thisShow = myShows.shows[showIndex]
-          console.log(thisShow);
-          database.ref().push(thisShow);
-          $(".btn-floating").html('<i class="material-icons">star</i></a>');
-        })
-
-      });
 
       $('.concert-btn').append(myButton);
 
-      if (queryURL === null) {
-        var noShow = ("<h1> Sorry no results found. </h1>");
-        $(".error-msg").append(noShow);
-      }
+      // create a click function for the results of the api
+      myButton.click(function() {
 
-      if (status === 400) {
-        var message = ("<h1> oops you missed something.</h1>")
-      }
+        // grabs the index of show
+        var showIndex = $(this).attr('data-show');
 
-      // if current api call is "today" {
-        //display today in concert buttons
-      //}
-    }
+        // calling function that changes 'src'
+        changeSrc(myShows.shows[showIndex].venue);
+
+        // calling function that pupulates card
+        makeCard(myShows.shows[showIndex].name, myShows.shows[showIndex].photoURL, myShows.shows[showIndex].venue);
+
+          $(".card").show();
+
+          $(".btn-floating").on("click", function(){
+            var thisShow = myShows.shows[showIndex]
+            //console.log(thisShow);
+            database.ref().push(thisShow);
+
+            $(".btn-floating").html('<i class="material-icons">star</i></a>');
+          })
+      });
+
+
+      //still working on this.
+    //   if (queryURL === null) {
+    //     var noShow = ("<h1> Sorry no results found. </h1>");
+    //     $(".error-msg").append(noShow);
+    //   }
+
+    //   // not working yet.
+    //   if ($("#startDate") === null || $("#endDate") === null || $("#genre") === null) {
+    //     var message = ("<h1> oops you missed something.</h1>")
+
+    //     $(".concert-btn").append(message);
+    //   }
+
+    //   //
+    //   if (api date == todays date) {
+    //     var showdate = events[i].dates.start.localDate;
+    //     showdate = 
+  }
 
   });
 
 });  
 
 
-// _______________________
-  database.ref().on("child_added", function(snapshot){
-    // var date = snapshot.val().date;
-    console.log(snapshot.val().date);
-    $("#fave-area").append(snapshot.val().name);
-    $("#fave-area").append(snapshot.val().venue);
-    $("#fave-area").append(snapshot.val().date);
-  });
 //-----------------------------------------------------------
 
-function loadIframe() {
-//this will populate the map, once they click one of ten buttons
+// this will store the info to firebase
+database.ref().on("child_added", function(snapshot){
 
-//do you guys think the map should always be there? or populate 
-//when you click a button??
-}
+  // var date = snapshot.val().date;
+  //console.log(snapshot.val().date);
 
+  $("#fave-area").append(snapshot.val().name);
+  $("#fave-area").append(snapshot.val().venue);
+  $("#fave-area").append(snapshot.val().date);
+});
+
+//-----------------------------------------------------------
+
+// this function populates the info on the card
 function makeCard(myCard, myCard2, myCard3, myCard4) {
+  
   var myText = myCard;
 
   $("#card-p").text(myText);
   $("#card-img").attr('src', myCard2);
   $("#card-v").text(myCard3);
   $("#card-t").text(myCard4);
-
-
 }
 
-function changeSrc(myobj) {
 //this will be the function that changes the src in the map
+function changeSrc(myobj) {
 
   // we grab what the api specifies
   var userLocation = myobj;
@@ -165,18 +172,10 @@ function changeSrc(myobj) {
 
 //-----------------------------------------------------------
 
+// when the document loads this happens...
 $(document).ready(function() {
 
   // materialize jquery for selection boxes
   $('select').material_select();
-
-});
-
-$("#result").on("click", function() {
-
-  //when the api result shows in map
-  //you can click a check "interested"
-  //set the database for what you have interested
-
 
 });
