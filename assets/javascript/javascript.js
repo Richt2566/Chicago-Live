@@ -8,15 +8,10 @@ var config = {
 // make sure they are connecting
 firebase.initializeApp(config);
 
-// Add comment
-
 var database = firebase.database();
 
 // hiding card until needed
 $('.card').hide();
-
-//api call will .push into the array...
-// var locationsEmpty = [];
 
 $('.datepicker').pickadate({
     selectMonths: true, // Creates a dropdown to control month
@@ -27,6 +22,8 @@ $('.datepicker').pickadate({
     close: 'Ok',
     closeOnSelect: true // Close upon selecting a date,
 });
+
+//var genreChange = false;
 
 //-----------------------------------------------------------
 $("#submit-btn").on("click", function(event){
@@ -55,82 +52,62 @@ $("#submit-btn").on("click", function(event){
   // "https://app.ticketmaster.com/discovery/v2/events.json?countryCode=US&city=Chicago&keyword=katy perry&apikey="+ apiKey;
   //"https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&city=chicago&apikey="+apiKey;
 
-  //the ajax call
-  $.ajax({
-      url: queryURL,
-      method: "GET"
-    }).done(function(response) {
-        var events = response._embedded.events;
-      myShows = {
-        "shows": []
-    };
+    //the ajax call
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+      }).done(function(response) {
+          var events = response._embedded.events;
+        myShows = {
+          "shows": []
+      };
 
-    for(var i=0;i<events.length;i++){
-      var aShow ={
-        "name": events[i].name,
-        "date": events[i].dates.start.localDate,
-        "venue": events[i]._embedded.venues[0].name,
-        "photoURL": events[i].images[0].url,
-        "ticketURL": events[i].url
-        //"latitude": events[i]._embedded.venues[0].location.latitude,
-        //"longitude": events[i]._embedded.venues[0].location.longitude
-       } ;
+      for(var i=0;i<events.length;i++){
+        var aShow ={
+          "name": events[i].name,
+          "date": events[i].dates.start.localDate,
+          "venue": events[i]._embedded.venues[0].name,
+          "photoURL": events[i].images[0].url,
+          "ticketURL": events[i].url
+          //"latitude": events[i]._embedded.venues[0].location.latitude,
+          //"longitude": events[i]._embedded.venues[0].location.longitude
+        } ;
 
-      myShows.shows.push(aShow);
-      
-      var myButton = $("<button class='api-btn'>" + events[i].name + "<br>"
-       + events[i].dates.start.localDate + "</button>");
-      
-      //
-      myButton.attr("data-show", i);
+        myShows.shows.push(aShow);
+        
+        var myButton = $("<button class='api-btn'>" + events[i].name + "<br>"
+         + events[i].dates.start.localDate + "</button>");
+        
+        //adding attribute to show as a string
+        myButton.attr("data-show", i);
 
-      $('.concert-btn').append(myButton);
+        //adding all info for buttons to the div we set
+        $('.concert-btn').append(myButton);
 
-      // create a click function for the results of the api
-      myButton.click(function() {
+        // create a click function for the results of the api
+        myButton.click(function() {
 
-        // grabs the index of show
-        var showIndex = $(this).attr('data-show');
+          // grabs the index of show
+          var showIndex = $(this).attr('data-show');
 
-        // calling function that changes 'src'
-        changeSrc(myShows.shows[showIndex].venue);
+          // calling function that changes 'src'
+          changeSrc(myShows.shows[showIndex].venue);
 
-        // calling function that pupulates card
-        makeCard(myShows.shows[showIndex].name, myShows.shows[showIndex].photoURL, myShows.shows[showIndex].venue);
+          // calling function that pupulates card
+          makeCard(myShows.shows[showIndex].name, myShows.shows[showIndex].photoURL, myShows.shows[showIndex].venue, myShows.shows[showIndex].date);
 
-          $(".card").show();
+            $(".card").show();
 
-          $(".btn-floating").on("click", function(){
-            var thisShow = myShows.shows[showIndex]
-            //console.log(thisShow);
-            database.ref().push(thisShow);
+            $(".btn-floating").on("click", function(){
+              var thisShow = myShows.shows[showIndex]
+              
+              database.ref().push(thisShow);
 
-            $(".btn-floating").html('<i class="material-icons">star</i></a>');
-          })
-      });
-
-
-      //still working on this.
-    //   if (queryURL === null) {
-    //     var noShow = ("<h1> Sorry no results found. </h1>");
-    //     $(".error-msg").append(noShow);
-    //   }
-
-    //   // not working yet.
-    //   if ($("#startDate") === null || $("#endDate") === null || $("#genre") === null) {
-    //     var message = ("<h1> oops you missed something.</h1>")
-
-    //     $(".concert-btn").append(message);
-    //   }
-
-    //   //
-    //   if (api date == todays date) {
-    //     var showdate = events[i].dates.start.localDate;
-    //     showdate = 
-  }
-
-  });
-
+              $(".btn-floating").html('<i class="material-icons">star</i></a>');
+            })
+        });
+      }
+    });
 });  
 
 
@@ -139,12 +116,10 @@ $("#submit-btn").on("click", function(event){
 // this will store the info to firebase
 database.ref().on("child_added", function(snapshot){
 
-  // var date = snapshot.val().date;
-  //console.log(snapshot.val().date);
-
   $("#fave-area").append(snapshot.val().name);
   $("#fave-area").append(snapshot.val().venue);
   $("#fave-area").append(snapshot.val().date);
+  
 });
 
 //-----------------------------------------------------------
