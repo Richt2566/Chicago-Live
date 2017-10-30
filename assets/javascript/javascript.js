@@ -94,7 +94,12 @@ $("#submit-btn").on("click", function(event){
           changeSrc(myShows.shows[showIndex].venue);
 
           // calling function that pupulates card
-          makeCard(myShows.shows[showIndex].name, myShows.shows[showIndex].photoURL, myShows.shows[showIndex].venue, myShows.shows[showIndex].date);
+          makeCard(myShows.shows[showIndex].name, 
+            myShows.shows[showIndex].photoURL, 
+            myShows.shows[showIndex].venue, 
+            myShows.shows[showIndex].date,
+            myShows.shows[showIndex].ticketURL
+            );
 
             $(".card").show();
 
@@ -125,7 +130,7 @@ database.ref().on("child_added", function(snapshot){
 //-----------------------------------------------------------
 
 // this function populates the info on the card
-function makeCard(myCard, myCard2, myCard3, myCard4) {
+function makeCard(myCard, myCard2, myCard3, myCard4, myCard5) {
   
   var myText = myCard;
 
@@ -133,6 +138,8 @@ function makeCard(myCard, myCard2, myCard3, myCard4) {
   $("#card-img").attr('src', myCard2);
   $("#card-v").text(myCard3);
   $("#card-t").text(myCard4);
+  $("#card-url").attr("href", myCard5);
+  
 }
 
 //this will be the function that changes the src in the map
