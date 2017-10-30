@@ -13,7 +13,7 @@ firebase.initializeApp(config);
 var database = firebase.database();
 
 // hiding card until needed
-$('.card').hide();
+$('.selected-card').hide();
 
 //api call will .push into the array...
 // var locationsEmpty = [];
@@ -75,8 +75,7 @@ $("#submit-btn").on("click", function(event){
        } ;
 
       myShows.shows.push(aShow);
-      var myButton = $("<button class='api-btn'>" + events[i].name + "<br>"
-       + events[i].dates.start.localDate + "</button>");
+      var myButton = $("<button class='api-btn'>" + events[i].name + "</button>");
       
       myButton.attr("data-show", i);
 
