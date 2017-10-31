@@ -1,11 +1,9 @@
 var config = {
-    apiKey: "AIzaSyCKhCYuatzoxWsG9RohKQRGLn05cpE5S_c",
-    authDomain: "concertfinderchicago.firebaseapp.com",
-    databaseURL: "https://concertfinderchicago.firebaseio.com",
-    projectId: "concertfinderchicago",
-    storageBucket: "concertfinderchicago.appspot.com",
-    messagingSenderId: "792833060372"
-};
+    apiKey: "AIzaSyC_iCNRw1-_EefEtmgoyiHN5XdB3UGisvA",
+    authDomain: "brew-database-97a1f.firebaseapp.com",
+    databaseURL: "https://brew-database-97a1f.firebaseio.com",
+    storageBucket: "brew-database-97a1f.appspot.com",
+  };
 
 
 // make sure they are connecting
