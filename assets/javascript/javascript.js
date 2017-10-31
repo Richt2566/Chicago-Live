@@ -28,10 +28,12 @@ $('.datepicker').pickadate({
 
 //-----------------------------------------------------------
 
-$("#submit-btn").on("click", function(event){
+// $("#submit-btn").on("click", function(event){
+function onSubmit(e){
 
   // this prevents the page from reloading
-  event.preventDefault();
+  e.preventDefault();
+  $('.concert-btn').empty();
 
   // constructing a queryURL variable we will use instead of the literal string inside of the ajax method
   var startDates = $("#startDate").val();
@@ -117,7 +119,11 @@ $("#submit-btn").on("click", function(event){
       }
 
     });
+
+};  
+
 });
+
 
 
 //-----------------------------------------------------------
@@ -175,7 +181,15 @@ function changeSrc(myobj) {
 // when the document loads this happens...
 $(document).ready(function() {
 
+
+  // materialize jquery for selection boxes
+  $('select').material_select();
+  $("#submit-btn").on("click", function(event){
+    onSubmit(event);
+  });
+
     // materialize jquery for selection boxes
     $('select').material_select();
+
 
 });
