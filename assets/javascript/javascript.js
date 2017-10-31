@@ -1,9 +1,12 @@
 var config = {
-    apiKey: "AIzaSyC_iCNRw1-_EefEtmgoyiHN5XdB3UGisvA",
-    authDomain: "brew-database-97a1f.firebaseapp.com",
-    databaseURL: "https://brew-database-97a1f.firebaseio.com",
-    storageBucket: "brew-database-97a1f.appspot.com",
+    apiKey: "AIzaSyCKhCYuatzoxWsG9RohKQRGLn05cpE5S_c",
+    authDomain: "concertfinderchicago.firebaseapp.com",
+    databaseURL: "https://concertfinderchicago.firebaseio.com",
+    projectId: "concertfinderchicago",
+    storageBucket: "concertfinderchicago.appspot.com",
+    messagingSenderId: "792833060372"
 };
+
 
 // make sure they are connecting
 firebase.initializeApp(config);
@@ -26,8 +29,10 @@ $('.datepicker').pickadate({
 //var genreChange = false;
 
 //-----------------------------------------------------------
+
 // $("#submit-btn").on("click", function(event){
 function onSubmit(e){
+
   // this prevents the page from reloading
   e.preventDefault();
   $('.concert-btn').empty();
@@ -53,13 +58,15 @@ function onSubmit(e){
   // "https://app.ticketmaster.com/discovery/v2/events.json?countryCode=US&city=Chicago&keyword=katy perry&apikey="+ apiKey;
   //"https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&city=chicago&apikey="+apiKey;
 
+
     //the ajax call
     $.ajax({
         url: queryURL,
         method: "GET"
-      }).done(function(response) {
-          var events = response._embedded.events;
+    }).done(function(response) {
+        var events = response._embedded.events;
         myShows = {
+
           "shows": []
       };
 
@@ -112,6 +119,7 @@ function onSubmit(e){
             })
         });
       }
+
     });
 };  
 
@@ -119,17 +127,31 @@ function onSubmit(e){
 //-----------------------------------------------------------
 
 // this will store the info to firebase
-database.ref().on("child_added", function(snapshot){
+database.ref().on("child_added", function(snapshot) {
 
-  $("#fave-area").append(snapshot.val().name);
-  $("#fave-area").append(snapshot.val().venue);
-  $("#fave-area").append(snapshot.val().date);
-  
+    // $("#fave-area").append(snapshot.val().name);
+    // $("#fave-area").append(snapshot.val().venue);
+    // $("#fave-area").append(snapshot.val().date);
+// 
+    var html = [
+        '<div class="row center-align">',
+        '<div class="col s6 m4 l4">',
+        '<div class="card">',
+        '<div class="card-image">',
+        '<img id="card-img" src="">',
+        '<span class="card-title">' + snapshot.val().name + snapshot.val().venue + snapshot.val().date+'</span>',
+        '<a class="btn-floating halfway-fab waves-effect waves-light">',
+        ' <i class="material-icons">star_outline</i> </a></div>'
+    ].join("")
+    $('.fav-card-content').append(html)
+
 });
+
 
 //-----------------------------------------------------------
 
 // this function populates the info on the card
+
 function makeCard(myCard, myCard2, myCard3, myCard4, myCard5) {
   
   var myText = myCard;
@@ -145,11 +167,11 @@ function makeCard(myCard, myCard2, myCard3, myCard4, myCard5) {
 //this will be the function that changes the src in the map
 function changeSrc(myobj) {
 
-  // we grab what the api specifies
-  var userLocation = myobj;
+    // we grab what the api specifies
+    var userLocation = myobj;
 
-  //once submit gets clicked we change the path of the iframe to what the user has typed
-  $("#myFrame").attr('src', "https://www.google.com/maps/embed/v1/search?q=" + userLocation + "&key=AIzaSyB7ydrZE1U4_y3TjyeaO2aVyfWzxUnxKuk");
+    //once submit gets clicked we change the path of the iframe to what the user has typed
+    $("#myFrame").attr('src', "https://www.google.com/maps/embed/v1/search?q=" + userLocation + "&key=AIzaSyB7ydrZE1U4_y3TjyeaO2aVyfWzxUnxKuk");
 }
 
 //-----------------------------------------------------------
