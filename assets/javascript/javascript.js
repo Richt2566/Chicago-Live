@@ -62,6 +62,9 @@ function onSubmit(e){
         url: queryURL,
         method: "GET"
     }).done(function(response) {
+        console.log(response);
+        if (response.page.totalElements > 0){
+
         var events = response._embedded.events;
         myShows = {
 
@@ -117,8 +120,13 @@ function onSubmit(e){
             })
         });
       }
+    }
+    else{
+     $(".error-msg").text("Error");
+    }
 
     });
+  
 
 };  
 
@@ -178,16 +186,10 @@ function changeSrc(myobj) {
 
 // when the document loads this happens...
 $(document).ready(function() {
-
-
-  // materialize jquery for selection boxes
+ // materialize jquery for selection boxes
   $('select').material_select();
   $("#submit-btn").on("click", function(event){
     onSubmit(event);
   });
-
-    // materialize jquery for selection boxes
-    $('select').material_select();
-
 
 });
