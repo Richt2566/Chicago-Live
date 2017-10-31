@@ -118,3 +118,7 @@ input::placeholder {
 #card-url:hover {
 	color: #EFC178;
 }
+
+#fav-card-p {
+	color: black;
+}
