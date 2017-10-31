@@ -14,7 +14,7 @@ firebase.initializeApp(config);
 var database = firebase.database();
 
 // hiding card until needed
-$('.card').hide();
+$('.selected-card').hide();
 
 $('.datepicker').pickadate({
     selectMonths: true, // Creates a dropdown to control month
@@ -29,31 +29,33 @@ $('.datepicker').pickadate({
 //var genreChange = false;
 
 //-----------------------------------------------------------
-$("#submit-btn").on("click", function(event) {
 
-    // this prevents the page from reloading
-    event.preventDefault();
+$("#submit-btn").on("click", function(event){
 
-    // constructing a queryURL variable we will use instead of the literal string inside of the ajax method
-    var startDates = $("#startDate").val();
-    var endDates = $("#endDate").val();
-    var time = "T00:00:00Z";
-    var title = "Ticket Master";
-    var genre = $("#genre").val();
-    var startDate = startDates.concat(time);
-    var endDate = endDates.concat(time);
-    var size = 20;
-    var apiKey = "qq8XdJrLt8geS8g2CUjbY9sqKk8crlQw";
-    var queryURL = "https:app.ticketmaster.com/discovery/v2/events.json?countryCode=US&city=Chicago&classificationName=music&classificationName=" + genre + "&startDateTime=" + startDate + "&endDateTime=" + endDate + "&size=" + size + "&apikey=" + apiKey;
+  // this prevents the page from reloading
+  event.preventDefault();
 
-    var myShows = {
-        "shows": []
-    };
+  // constructing a queryURL variable we will use instead of the literal string inside of the ajax method
+  var startDates = $("#startDate").val();
+  var endDates = $("#endDate").val();
+  var time = "T00:00:00Z";
+  var title = "Ticket Master";
+  var genre = $("#genre").val();
+  var startDate = startDates.concat(time);
+  var endDate = endDates.concat(time);
+  var size = 20;
+  var apiKey="qq8XdJrLt8geS8g2CUjbY9sqKk8crlQw";
+  var queryURL = "https:app.ticketmaster.com/discovery/v2/events.json?countryCode=US&city=Chicago&classificationName=music&classificationName="+genre+"&startDateTime="+startDate+"&endDateTime="+endDate+"&size="+size+"&apikey="+apiKey;
 
-    //"https://app.ticketmaster.com/discovery/v2/events.json?countryCode=US&city=Chicago&endDateTime=2017-10-28T00:00:00Z&startDateTime=2017-10-23T00:00:00Z&classificationId=KZFzniwnSyZfZ7v7nJ&classificationName=pop&size=31&apikey="+ apiKey;
-    //"https://app.ticketmaster.com/classification/v2/Id=KZFzniwnSyZfZ7v7nJ&apikey"+apiKey;
-    // "https://app.ticketmaster.com/discovery/v2/events.json?countryCode=US&city=Chicago&keyword=katy perry&apikey="+ apiKey;
-    //"https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&city=chicago&apikey="+apiKey;
+  // var myShows = {
+  //   "shows": []
+  // };
+
+  //"https://app.ticketmaster.com/discovery/v2/events.json?countryCode=US&city=Chicago&endDateTime=2017-10-28T00:00:00Z&startDateTime=2017-10-23T00:00:00Z&classificationId=KZFzniwnSyZfZ7v7nJ&classificationName=pop&size=31&apikey="+ apiKey;
+  //"https://app.ticketmaster.com/classification/v2/Id=KZFzniwnSyZfZ7v7nJ&apikey"+apiKey;
+  // "https://app.ticketmaster.com/discovery/v2/events.json?countryCode=US&city=Chicago&keyword=katy perry&apikey="+ apiKey;
+  //"https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&city=chicago&apikey="+apiKey;
+
 
     //the ajax call
     $.ajax({
@@ -62,54 +64,60 @@ $("#submit-btn").on("click", function(event) {
     }).done(function(response) {
         var events = response._embedded.events;
         myShows = {
-            "shows": []
-        };
 
-        for (var i = 0; i < events.length; i++) {
-            var aShow = {
-                "name": events[i].name,
-                "date": events[i].dates.start.localDate,
-                "venue": events[i]._embedded.venues[0].name,
-                "photoURL": events[i].images[0].url,
-                "ticketURL": events[i].url
-                //"latitude": events[i]._embedded.venues[0].location.latitude,
-                //"longitude": events[i]._embedded.venues[0].location.longitude
-            };
+          "shows": []
+      };
 
-            myShows.shows.push(aShow);
+      for(var i=0;i<events.length;i++){
+        var aShow ={
+          "name": events[i].name,
+          "date": events[i].dates.start.localDate,
+          "venue": events[i]._embedded.venues[0].name,
+          "photoURL": events[i].images[0].url,
+          "ticketURL": events[i].url
+          //"latitude": events[i]._embedded.venues[0].location.latitude,
+          //"longitude": events[i]._embedded.venues[0].location.longitude
+        } ;
 
-            var myButton = $("<button class='api-btn'>" + events[i].name + "<br>" +
-                events[i].dates.start.localDate + "</button>");
+        myShows.shows.push(aShow);
+        
+        var myButton = $("<button class='api-btn'>" + events[i].name + "</button>");
+        
+        //adding attribute to show as a string
+        myButton.attr("data-show", i);
 
-            //adding attribute to show as a string
-            myButton.attr("data-show", i);
+        //adding all info for buttons to the div we set
+        $('.concert-btn').append(myButton);
 
-            //adding all info for buttons to the div we set
-            $('.concert-btn').append(myButton);
+        // create a click function for the results of the api
+        myButton.click(function() {
 
-            // create a click function for the results of the api
-            myButton.click(function() {
+          // grabs the index of show
+          var showIndex = $(this).attr('data-show');
 
-                // grabs the index of show
-                var showIndex = $(this).attr('data-show');
+          // calling function that changes 'src'
+          changeSrc(myShows.shows[showIndex].venue);
 
-                // calling function that changes 'src'
-                changeSrc(myShows.shows[showIndex].venue);
+          // calling function that pupulates card
+          makeCard(myShows.shows[showIndex].name, 
+            myShows.shows[showIndex].photoURL, 
+            myShows.shows[showIndex].venue, 
+            myShows.shows[showIndex].date,
+            myShows.shows[showIndex].ticketURL
+            );
 
-                // calling function that pupulates card
-                makeCard(myShows.shows[showIndex].name, myShows.shows[showIndex].photoURL, myShows.shows[showIndex].venue, myShows.shows[showIndex].date);
+            $(".selected-card").show();
 
-                $(".card").show();
+            $(".btn-floating").on("click", function(){
+              var thisShow = myShows.shows[showIndex]
+              
+              database.ref().push(thisShow);
 
-                $(".btn-floating").on("click", function() {
-                    var thisShow = myShows.shows[showIndex]
+              $(".btn-floating").html('<i class="material-icons">star</i></a>');
+            })
+        });
+      }
 
-                    database.ref().push(thisShow);
-
-                    $(".btn-floating").html('<i class="material-icons">star</i></a>');
-                })
-            });
-        }
     });
 });
 
@@ -133,7 +141,7 @@ database.ref().on("child_added", function(snapshot) {
         '<a class="btn-floating halfway-fab waves-effect waves-light">',
         ' <i class="material-icons">star_outline</i> </a></div>'
     ].join("")
-    $('#fave-area').append(html)
+    $('.fav-card-content').append(html)
 
 });
 
@@ -141,14 +149,17 @@ database.ref().on("child_added", function(snapshot) {
 //-----------------------------------------------------------
 
 // this function populates the info on the card
-function makeCard(myCard, myCard2, myCard3, myCard4) {
 
-    var myText = myCard;
+function makeCard(myCard, myCard2, myCard3, myCard4, myCard5) {
+  
+  var myText = myCard;
 
-    $("#card-p").text(myText);
-    $("#card-img").attr('src', myCard2);
-    $("#card-v").text(myCard3);
-    $("#card-t").text(myCard4);
+  $("#card-p").text(myText);
+  $("#card-img").attr('src', myCard2);
+  $("#card-v").text(myCard3);
+  $("#card-t").text(myCard4);
+  $("#card-url").attr("href", myCard5);
+  
 }
 
 //this will be the function that changes the src in the map
