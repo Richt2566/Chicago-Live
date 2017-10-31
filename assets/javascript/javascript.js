@@ -121,7 +121,9 @@ function onSubmit(e){
       }
 
     });
+
 };  
+
 
 
 //-----------------------------------------------------------
@@ -178,8 +180,7 @@ function changeSrc(myobj) {
 
 // when the document loads this happens...
 $(document).ready(function() {
-
-  // materialize jquery for selection boxes
+ // materialize jquery for selection boxes
   $('select').material_select();
   $("#submit-btn").on("click", function(event){
     onSubmit(event);
