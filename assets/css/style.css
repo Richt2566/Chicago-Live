@@ -7,8 +7,17 @@ h1 {
 	font-family: 'Arvo', serif;
 	color: #E5B04E;
 	text-align: center;
-	font-size: 45px;
+	font-size: 40px;
+	margin-bottom: 30px;
+}
 
+h2 {
+	font-family: 'Arvo', serif;
+	color: #E5B04E;
+	text-align: center;
+	font-size: 38px;
+	margin-top: -110px;
+	margin-bottom: 5px;
 }
 
 p {
@@ -21,6 +30,8 @@ form {
 	font-family: 'Arvo', serif;
 	color: white;
 }
+
+/*submit and clear buttons*/
 
 .btn {
 	font-family: 'Arvo', serif;
@@ -38,17 +49,18 @@ form {
   background-color: #EFC178;
 }
 
+/*placeholder text*/
+
 input::placeholder {
 	color: white;
+	font-size: 16px;
 }
 
-option[value] {
-	color: #E5B04E;
-}
+
+/*google map*/
 
 .map-responsive{
     overflow:hidden;
-    padding-bottom:50%;
     position:relative;
     height:0;
 }
@@ -60,22 +72,18 @@ option[value] {
     position:absolute;
 }
 
-.concert-btn {
-	
-}
-
+/*buttons that appear after submit is clicked*/
 .api-btn {
 	font-family: 'Roboto Condensed', sans-serif;
 	color: #E5B04E;
 	width: 46%;
-	/*word-wrap:break-word;*/
+	height: 50px;
+	white-space: nowrap;
 	overflow:hidden;
 	text-overflow: ellipsis;
-	padding: 25px;
+	font-size: 18px;
 	margin: 8px;
-	height: 80px;
 	background-color: #444444;
-	
 	border: 0;
 }
 
@@ -88,14 +96,13 @@ option[value] {
 	background-color: #565656;
 }
 
-.halfway-fab {
-	color: #E5B04E;
-}
-
+/*formatting for the card that appears*/
 .card {
 	margin-top: 28px;
+	line-height: 100%;
 }
 
+/*star icon button*/
 .btn-floating{
 	background-color: #E5B04E;
 }

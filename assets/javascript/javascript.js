@@ -11,7 +11,7 @@ firebase.initializeApp(config);
 var database = firebase.database();
 
 // hiding card until needed
-$('.card').hide();
+$('.selected-card').hide();
 
 $('.datepicker').pickadate({
     selectMonths: true, // Creates a dropdown to control month
@@ -75,8 +75,7 @@ $("#submit-btn").on("click", function(event){
 
         myShows.shows.push(aShow);
         
-        var myButton = $("<button class='api-btn'>" + events[i].name + "<br>"
-         + events[i].dates.start.localDate + "</button>");
+        var myButton = $("<button class='api-btn'>" + events[i].name + "</button>");
         
         //adding attribute to show as a string
         myButton.attr("data-show", i);
@@ -101,7 +100,7 @@ $("#submit-btn").on("click", function(event){
             myShows.shows[showIndex].ticketURL
             );
 
-            $(".card").show();
+            $(".selected-card").show();
 
             $(".btn-floating").on("click", function(){
               var thisShow = myShows.shows[showIndex]
