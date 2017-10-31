@@ -124,7 +124,6 @@ function onSubmit(e){
 
 
 
-
 //-----------------------------------------------------------
 
 // this will store the info to firebase
