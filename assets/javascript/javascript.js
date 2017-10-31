@@ -3,7 +3,11 @@ var config = {
     authDomain: "brew-database-97a1f.firebaseapp.com",
     databaseURL: "https://brew-database-97a1f.firebaseio.com",
     storageBucket: "brew-database-97a1f.appspot.com",
+<<<<<<< HEAD
 };
+=======
+  };
+>>>>>>> 1f85032c59d06de2602772bd82206b8ea0748070
 
 // make sure they are connecting
 firebase.initializeApp(config);
@@ -26,10 +30,17 @@ $('.datepicker').pickadate({
 //var genreChange = false;
 
 //-----------------------------------------------------------
+<<<<<<< HEAD
 $("#submit-btn").on("click", function(event){
+=======
+
+// $("#submit-btn").on("click", function(event){
+function onSubmit(e){
+>>>>>>> 1f85032c59d06de2602772bd82206b8ea0748070
 
   // this prevents the page from reloading
-  event.preventDefault();
+  e.preventDefault();
+  $('.concert-btn').empty();
 
   // constructing a queryURL variable we will use instead of the literal string inside of the ajax method
   var startDates = $("#startDate").val();
@@ -56,8 +67,16 @@ $("#submit-btn").on("click", function(event){
     $.ajax({
         url: queryURL,
         method: "GET"
+<<<<<<< HEAD
       }).done(function(response) {
           var events = response._embedded.events;
+=======
+    }).done(function(response) {
+        console.log(response);
+        if (response.page.totalElements > 0){
+
+        var events = response._embedded.events;
+>>>>>>> 1f85032c59d06de2602772bd82206b8ea0748070
         myShows = {
           "shows": []
       };
@@ -107,8 +126,21 @@ $("#submit-btn").on("click", function(event){
             })
         });
       }
+<<<<<<< HEAD
     });
 });  
+=======
+    }
+    else{
+     $(".error-msg").text("Error");
+    }
+
+    });
+  
+
+};  
+
+>>>>>>> 1f85032c59d06de2602772bd82206b8ea0748070
 
 
 //-----------------------------------------------------------
@@ -149,8 +181,16 @@ function changeSrc(myobj) {
 
 // when the document loads this happens...
 $(document).ready(function() {
+<<<<<<< HEAD
 
   // materialize jquery for selection boxes
   $('select').material_select();
+=======
+ // materialize jquery for selection boxes
+  $('select').material_select();
+  $("#submit-btn").on("click", function(event){
+    onSubmit(event);
+  });
+>>>>>>> 1f85032c59d06de2602772bd82206b8ea0748070
 
 });
