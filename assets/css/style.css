@@ -99,7 +99,7 @@ input::placeholder {
 /*formatting for the card that appears*/
 .card {
 	margin-top: 28px;
-	line-height: 100%;
+	line-height: 125%;
 }
 
 /*star icon button*/
@@ -109,4 +109,12 @@ input::placeholder {
 
 .btn-floating:hover {
 	background-color: #EFC178;
+}
+
+#card-url {
+	color: #E5B04E;
+}
+
+#card-url:hover {
+	color: #EFC178;
 }
