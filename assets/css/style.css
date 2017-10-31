@@ -3,12 +3,12 @@ body {
 	margin: auto;
 }
 
-h1 {
-	font-family: 'Arvo', serif;
-	color: #E5B04E;
-	text-align: center;
-	font-size: 40px;
+#logo {
+	display: block;
+	margin: auto;
+	margin-top: 30px;
 	margin-bottom: 30px;
+	width:38%;
 }
 
 h2 {
@@ -121,4 +121,4 @@ input::placeholder {
 
 #fav-card-p {
 	color: black;
-}
+
