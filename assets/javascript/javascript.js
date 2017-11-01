@@ -122,7 +122,7 @@ function onSubmit(e){
       }
     }
     else{
-     $(".error-msg").text("Error");
+     $(".error-msg").text("Your search came up empty. Try another date range or genre.");
     }
 
     });
