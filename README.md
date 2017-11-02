@@ -1,6 +1,7 @@
-# Project 1
+# Chicago Music Event Locator
 
-This repository contains a user friendly webpage that searches for music events in Chicago. User can define specific music genre and date range. Result are displayed with the artists names, event dates, and specific venue locations.
+This repository contains the user friendly webpage that searches for music events in Chicago. User can define specific music genre and date range. Result are displayed with the artists names, event dates, and specific venue locations.
+
 * Direct link
 
 ## Objectives
@@ -37,3 +38,9 @@ This repository contains a user friendly webpage that searches for music events 
 ## License
 
 * None
+
+## Acknowledgments
+
+* Phil Wise, Reuben Ayres, and Maggie Storino
+
+
