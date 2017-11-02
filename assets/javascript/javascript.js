@@ -3,11 +3,8 @@ var config = {
     authDomain: "brew-database-97a1f.firebaseapp.com",
     databaseURL: "https://brew-database-97a1f.firebaseio.com",
     storageBucket: "brew-database-97a1f.appspot.com",
-<<<<<<< HEAD
-};
-=======
   };
->>>>>>> 1f85032c59d06de2602772bd82206b8ea0748070
+
 
 // make sure they are connecting
 firebase.initializeApp(config);
@@ -15,7 +12,7 @@ firebase.initializeApp(config);
 var database = firebase.database();
 
 // hiding card until needed
-$('.card').hide();
+$('.selected-card').hide();
 
 $('.datepicker').pickadate({
     selectMonths: true, // Creates a dropdown to control month
@@ -30,13 +27,9 @@ $('.datepicker').pickadate({
 //var genreChange = false;
 
 //-----------------------------------------------------------
-<<<<<<< HEAD
-$("#submit-btn").on("click", function(event){
-=======
 
 // $("#submit-btn").on("click", function(event){
 function onSubmit(e){
->>>>>>> 1f85032c59d06de2602772bd82206b8ea0748070
 
   // this prevents the page from reloading
   e.preventDefault();
@@ -54,30 +47,27 @@ function onSubmit(e){
   var apiKey="qq8XdJrLt8geS8g2CUjbY9sqKk8crlQw";
   var queryURL = "https:app.ticketmaster.com/discovery/v2/events.json?countryCode=US&city=Chicago&classificationName=music&classificationName="+genre+"&startDateTime="+startDate+"&endDateTime="+endDate+"&size="+size+"&apikey="+apiKey;
 
-  var myShows = {
-    "shows": []
-  };
+  // var myShows = {
+  //   "shows": []
+  // };
 
   //"https://app.ticketmaster.com/discovery/v2/events.json?countryCode=US&city=Chicago&endDateTime=2017-10-28T00:00:00Z&startDateTime=2017-10-23T00:00:00Z&classificationId=KZFzniwnSyZfZ7v7nJ&classificationName=pop&size=31&apikey="+ apiKey;
   //"https://app.ticketmaster.com/classification/v2/Id=KZFzniwnSyZfZ7v7nJ&apikey"+apiKey;
   // "https://app.ticketmaster.com/discovery/v2/events.json?countryCode=US&city=Chicago&keyword=katy perry&apikey="+ apiKey;
   //"https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&city=chicago&apikey="+apiKey;
 
+
     //the ajax call
     $.ajax({
         url: queryURL,
         method: "GET"
-<<<<<<< HEAD
-      }).done(function(response) {
-          var events = response._embedded.events;
-=======
     }).done(function(response) {
         console.log(response);
         if (response.page.totalElements > 0){
 
         var events = response._embedded.events;
->>>>>>> 1f85032c59d06de2602772bd82206b8ea0748070
         myShows = {
+
           "shows": []
       };
 
@@ -94,8 +84,7 @@ function onSubmit(e){
 
         myShows.shows.push(aShow);
         
-        var myButton = $("<button class='api-btn'>" + events[i].name + "<br>"
-         + events[i].dates.start.localDate + "</button>");
+        var myButton = $("<button class='api-btn'>" + events[i].name + "</button>");
         
         //adding attribute to show as a string
         myButton.attr("data-show", i);
@@ -113,9 +102,14 @@ function onSubmit(e){
           changeSrc(myShows.shows[showIndex].venue);
 
           // calling function that pupulates card
-          makeCard(myShows.shows[showIndex].name, myShows.shows[showIndex].photoURL, myShows.shows[showIndex].venue, myShows.shows[showIndex].date);
+          makeCard(myShows.shows[showIndex].name, 
+            myShows.shows[showIndex].photoURL, 
+            myShows.shows[showIndex].venue, 
+            myShows.shows[showIndex].date,
+            myShows.shows[showIndex].ticketURL
+            );
 
-            $(".card").show();
+            $(".selected-card").show();
 
             $(".btn-floating").on("click", function(){
               var thisShow = myShows.shows[showIndex]
@@ -126,13 +120,9 @@ function onSubmit(e){
             })
         });
       }
-<<<<<<< HEAD
-    });
-});  
-=======
     }
     else{
-     $(".error-msg").text("Error");
+     $(".error-msg").text("Your search came up empty. Try another date range or genre.");
     }
 
     });
@@ -140,24 +130,32 @@ function onSubmit(e){
 
 };  
 
->>>>>>> 1f85032c59d06de2602772bd82206b8ea0748070
 
 
 //-----------------------------------------------------------
 
 // this will store the info to firebase
-database.ref().on("child_added", function(snapshot){
+database.ref().on("child_added", function(snapshot) {
 
-  $("#fave-area").append(snapshot.val().name);
-  $("#fave-area").append(snapshot.val().venue);
-  $("#fave-area").append(snapshot.val().date);
-  
+    // $("#fave-area").append(snapshot.val().name);
+    // $("#fave-area").append(snapshot.val().venue);
+    // $("#fave-area").append(snapshot.val().date);
+// 
+    var bandName = snapshot.val().name;
+var bandVenue = snapshot.val().venue;
+var bandDate = snapshot.val().date;
+
+$("#band-table> tbody").append("<tr><td>" + bandName + "</td><td>" + bandVenue + "</td><td>" + bandDate + "</td><td>");
+
 });
+
+
 
 //-----------------------------------------------------------
 
 // this function populates the info on the card
-function makeCard(myCard, myCard2, myCard3, myCard4) {
+
+function makeCard(myCard, myCard2, myCard3, myCard4, myCard5) {
   
   var myText = myCard;
 
@@ -165,32 +163,28 @@ function makeCard(myCard, myCard2, myCard3, myCard4) {
   $("#card-img").attr('src', myCard2);
   $("#card-v").text(myCard3);
   $("#card-t").text(myCard4);
+  $("#card-url").attr("href", myCard5);
+  
 }
 
 //this will be the function that changes the src in the map
 function changeSrc(myobj) {
 
-  // we grab what the api specifies
-  var userLocation = myobj;
+    // we grab what the api specifies
+    var userLocation = myobj;
 
-  //once submit gets clicked we change the path of the iframe to what the user has typed
-  $("#myFrame").attr('src', "https://www.google.com/maps/embed/v1/search?q=" + userLocation + "&key=AIzaSyB7ydrZE1U4_y3TjyeaO2aVyfWzxUnxKuk");
+    //once submit gets clicked we change the path of the iframe to what the user has typed
+    $("#myFrame").attr('src', "https://www.google.com/maps/embed/v1/search?q=" + userLocation + "&key=AIzaSyB7ydrZE1U4_y3TjyeaO2aVyfWzxUnxKuk");
 }
 
 //-----------------------------------------------------------
 
 // when the document loads this happens...
 $(document).ready(function() {
-<<<<<<< HEAD
-
-  // materialize jquery for selection boxes
-  $('select').material_select();
-=======
  // materialize jquery for selection boxes
   $('select').material_select();
   $("#submit-btn").on("click", function(event){
     onSubmit(event);
   });
->>>>>>> 1f85032c59d06de2602772bd82206b8ea0748070
 
 });
