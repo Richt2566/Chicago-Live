@@ -145,7 +145,7 @@ database.ref().on("child_added", function(snapshot) {
 var bandVenue = snapshot.val().venue;
 var bandDate = snapshot.val().date;
 
-$("#band-table> tbody").append("<tr><td>" + bandName + "</td><td>" + bandVenue + "</td><td>" + bandDate + "</td><td>");
+$("#band-table> tbody").prepend("<tr><td>" + bandName + "</td><td>" + bandVenue + "</td><td>" + bandDate + "</td><td>");
 
 });
 
