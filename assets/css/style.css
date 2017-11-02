@@ -49,6 +49,12 @@ form {
   background-color: #EFC178;
 }
 
+.error-msg {
+	color: #C32F1D;
+	margin-left: 9px;
+	font-size: 16px;
+}
+
 /*placeholder text*/
 
 input::placeholder {
