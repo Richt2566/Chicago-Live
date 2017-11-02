@@ -41,6 +41,6 @@ This repository contains the user friendly webpage that searches for music event
 
 ## Acknowledgments
 
-* [Phil Wise](https://www.linkedin.com/in/philipwise/), [Reuben Ayres](https://www.linkedin.com/in/reuben-ayres/), and [Maggie Storino](https://www.linkedin.com/in/maggiestorino/)
+* [Maggie Storino](https://www.linkedin.com/in/maggiestorino/), [Reuben Ayres](https://www.linkedin.com/in/reuben-ayres/), and [Phil Wise](https://www.linkedin.com/in/philipwise/)
 
 
