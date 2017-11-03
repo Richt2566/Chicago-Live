@@ -125,6 +125,16 @@ input::placeholder {
 	color: #EFC178;
 }
 
+th {
+	font-family: 'Arvo', serif;
+	color: white;
+	font-size: 18px;
+}
+
+td {
+	font-family: 'Arvo', serif;
+	color: white;
+}
 
 
 @media only screen and (max-width: 768px) {

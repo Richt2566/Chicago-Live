@@ -1,4 +1,4 @@
-# Chicago Music Event Locator
+# Chicago Live
 
 This repository contains the user friendly webpage that searches for music events in Chicago. User can define specific music genre and date range. Result are displayed with the artists names, event dates, and specific venue locations.
 
@@ -41,6 +41,6 @@ This repository contains the user friendly webpage that searches for music event
 
 ## Acknowledgments
 
-* Phil Wise, Reuben Ayres, and Maggie Storino
+* [Maggie Storino](https://www.linkedin.com/in/maggiestorino/), [Reuben Ayres](https://www.linkedin.com/in/reuben-ayres/), and [Phil Wise](https://www.linkedin.com/in/philipwise/)
 
 
