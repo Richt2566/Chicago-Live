@@ -62,6 +62,9 @@ function onSubmit(e){
         url: queryURL,
         method: "GET"
     }).done(function(response) {
+        console.log(response);
+        if (response.page.totalElements > 0){
+
         var events = response._embedded.events;
         myShows = {
 
@@ -117,11 +120,15 @@ function onSubmit(e){
             })
         });
       }
+    }
+    else{
+     $(".error-msg").text("Your search came up empty. Try another date range or genre.");
+    }
 
     });
+  
 
 };  
-
 
 
 
@@ -134,19 +141,14 @@ database.ref().on("child_added", function(snapshot) {
     // $("#fave-area").append(snapshot.val().venue);
     // $("#fave-area").append(snapshot.val().date);
 // 
-    var html = [
-        '<div class="row center-align">',
-        '<div class="col s6 m4 l4">',
-        '<div class="card">',
-        '<div class="card-image">',
-        '<img id="card-img" src="">',
-        '<span class="card-title">' + snapshot.val().name + snapshot.val().venue + snapshot.val().date+'</span>',
-        '<a class="btn-floating halfway-fab waves-effect waves-light">',
-        ' <i class="material-icons">star_outline</i> </a></div>'
-    ].join("")
-    $('.fav-card-content').append(html)
+    var bandName = snapshot.val().name;
+var bandVenue = snapshot.val().venue;
+var bandDate = snapshot.val().date;
+
+$("#band-table> tbody").prepend("<tr><td>" + bandName + "</td><td>" + bandVenue + "</td><td>" + bandDate + "</td><td>");
 
 });
+
 
 
 //-----------------------------------------------------------
@@ -179,16 +181,10 @@ function changeSrc(myobj) {
 
 // when the document loads this happens...
 $(document).ready(function() {
-
-
-  // materialize jquery for selection boxes
+ // materialize jquery for selection boxes
   $('select').material_select();
   $("#submit-btn").on("click", function(event){
     onSubmit(event);
   });
-
-    // materialize jquery for selection boxes
-    $('select').material_select();
-
 
 });

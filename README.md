@@ -1,6 +1,7 @@
-# Project 1
+# Chicago Live
 
-This repository contains a user friendly webpage that searches for music events in Chicago. User can define specific music genre and date range. Result are displayed with the artists names, event dates, and specific venue locations.
+This repository contains the user friendly webpage that searches for music events in Chicago. User can define specific music genre and date range. Result are displayed with the artists names, event dates, and specific venue locations.
+
 * Direct link
 
 ## Objectives
@@ -37,3 +38,9 @@ This repository contains a user friendly webpage that searches for music events 
 ## License
 
 * None
+
+## Acknowledgments
+
+* [Maggie Storino](https://www.linkedin.com/in/maggiestorino/), [Reuben Ayres](https://www.linkedin.com/in/reuben-ayres/), and [Phil Wise](https://www.linkedin.com/in/philipwise/)
+
+
