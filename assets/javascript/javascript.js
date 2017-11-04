@@ -45,7 +45,7 @@ function onSubmit(e){
   var endDate = endDates.concat(time);
   var size = 20;
   var apiKey="qq8XdJrLt8geS8g2CUjbY9sqKk8crlQw";
-  var queryURL = "https:app.ticketmaster.com/discovery/v2/events.json?countryCode=US&city=Chicago&classificationName=music&classificationName="+genre+"&startDateTime="+startDate+"&endDateTime="+endDate+"&size="+size+"&apikey="+apiKey;
+  var queryURL = "https://app.ticketmaster.com/discovery/v2/events.json?countryCode=US&city=Chicago&classificationName=music&classificationName="+genre+"&startDateTime="+startDate+"&endDateTime="+endDate+"&size="+size+"&apikey="+apiKey;
 
   // var myShows = {
   //   "shows": []
