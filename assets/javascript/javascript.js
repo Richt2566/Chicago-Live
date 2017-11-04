@@ -62,6 +62,9 @@ function onSubmit(e){
         url: queryURL,
         method: "GET"
     }).done(function(response) {
+        console.log(response);
+        if (response.page.totalElements > 0){
+
         var events = response._embedded.events;
         myShows = {
 
@@ -117,8 +120,13 @@ function onSubmit(e){
             })
         });
       }
+    }
+    else{
+     $(".error-msg").text("Your search came up empty. Try another date range or genre.");
+    }
 
     });
+  
 
 };  
 
@@ -150,7 +158,15 @@ database.ref().on("child_added", function(snapshot) {
     $("#fav-card-v").text(snapshot.val().venue);
     
 
+// 
+//     var bandName = snapshot.val().name;
+// var bandVenue = snapshot.val().venue;
+// var bandDate = snapshot.val().date;
+
+$("#band-table> tbody").prepend("<tr><td>" + bandName + "</td><td>" + bandVenue + "</td><td>" + bandDate + "</td><td>");
+
 });
+
 
 
 //-----------------------------------------------------------
@@ -183,16 +199,10 @@ function changeSrc(myobj) {
 
 // when the document loads this happens...
 $(document).ready(function() {
-
-
-  // materialize jquery for selection boxes
+ // materialize jquery for selection boxes
   $('select').material_select();
   $("#submit-btn").on("click", function(event){
     onSubmit(event);
   });
-
-    // materialize jquery for selection boxes
-    $('select').material_select();
-
 
 });

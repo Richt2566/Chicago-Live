@@ -49,6 +49,12 @@ form {
   background-color: #EFC178;
 }
 
+.error-msg {
+	color: #C32F1D;
+	margin-left: 9px;
+	font-size: 16px;
+}
+
 /*placeholder text*/
 
 input::placeholder {
@@ -119,6 +125,20 @@ input::placeholder {
 	color: #EFC178;
 }
 
-#fav-card-p {
-	color: black;
+th {
+	font-family: 'Arvo', serif;
+	color: white;
+	font-size: 18px;
+}
 
+td {
+	font-family: 'Arvo', serif;
+	color: white;
+}
+
+
+@media only screen and (max-width: 768px) {
+    .logo {
+        width: 50%;
+    }
+}
