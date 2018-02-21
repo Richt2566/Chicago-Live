@@ -140,8 +140,26 @@ database.ref().on("child_added", function(snapshot) {
     // $("#fave-area").append(snapshot.val().name);
     // $("#fave-area").append(snapshot.val().venue);
     // $("#fave-area").append(snapshot.val().date);
-// 
-    var bandName = snapshot.val().name;
+
+// var html = [
+    //     '<div class="row center-align">',
+    //     '<div class="col s6 m4 l4">',
+    //     '<div class="card">',
+    //     '<div class="card-image">',
+    //     '<img id="card-img" src="">',
+    //     '<span class="card-title">' + snapshot.val().name + snapshot.val().venue + snapshot.val().date+'</span>',
+    //     '<a class="btn-floating halfway-fab waves-effect waves-light">',
+    //     ' <i class="material-icons">star_outline</i> </a></div>'
+    // ].join("")
+    // $('.fav-card-content').append(html)
+    // 
+
+    $("#fav-card-p").text(snapshot.val().name);
+    $("#fav-card-v").text(snapshot.val().venue);
+    
+
+
+var bandName = snapshot.val().name;
 var bandVenue = snapshot.val().venue;
 var bandDate = snapshot.val().date;
 
