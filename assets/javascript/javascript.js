@@ -158,10 +158,10 @@ database.ref().on("child_added", function(snapshot) {
     $("#fav-card-v").text(snapshot.val().venue);
     
 
-// 
-//     var bandName = snapshot.val().name;
-// var bandVenue = snapshot.val().venue;
-// var bandDate = snapshot.val().date;
+
+var bandName = snapshot.val().name;
+var bandVenue = snapshot.val().venue;
+var bandDate = snapshot.val().date;
 
 $("#band-table> tbody").prepend("<tr><td>" + bandName + "</td><td>" + bandVenue + "</td><td>" + bandDate + "</td><td>");
 
